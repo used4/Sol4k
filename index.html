@@ -213,7 +213,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Features Section */
+        /* Features Section - شبكية بدلاً من عمودية */
         .features {
             padding: 80px 0;
             background-color: white;
@@ -239,8 +239,14 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .feature-card {
@@ -249,11 +255,16 @@
             padding: 30px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
@@ -266,6 +277,166 @@
             font-size: 24px;
             margin-bottom: 15px;
             color: var(--secondary-color);
+        }
+
+        /* إيقونات متحركة */
+        .moving-icons-section {
+            padding: 60px 0;
+            background-color: #f0f4f8;
+            overflow: hidden;
+        }
+
+        .moving-icons-container {
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .moving-icons {
+            display: flex;
+            animation: moveIcons 30s linear infinite;
+            gap: 40px;
+        }
+
+        .moving-icons-rtl {
+            animation-direction: reverse;
+            margin-top: 30px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-item i {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .icon-item span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-color);
+            text-align: center;
+        }
+
+        @keyframes moveIcons {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* مربع مع صورة وإيقونات متحركة */
+        .image-icons-box {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .image-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        .image-box-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .image-box-content img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .image-box-content h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .image-box-content p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .image-box-icons {
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .image-icons-moving {
+            display: flex;
+            animation: moveIconsFast 20s linear infinite;
+            gap: 30px;
+        }
+
+        .image-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 80px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .image-icon-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .image-icon-item i {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .image-icon-item span {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        @keyframes moveIconsFast {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* Products Section */
@@ -581,6 +752,10 @@
 
             .section-title {
                 font-size: 28px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -903,7 +1078,7 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section - بشكل شبكي -->
     <section class="features" id="features">
         <div class="container">
             <h2 class="section-title">مميزات Sol 4k</h2>
@@ -935,6 +1110,40 @@
                     </div>
                     <h3>توصيل سريع</h3>
                     <p>توصيل سريع للمنتجات المادية خلال 2-5 أيام عمل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- إيقونات متحركة -->
+    <section class="moving-icons-section">
+        <div class="container">
+            <h2 class="section-title">خدماتنا المتكاملة</h2>
+            <div class="moving-icons-container">
+                <div class="moving-icons" id="movingIcons1">
+                    <!-- سيتم إضافة الإيقونات بواسطة JavaScript -->
+                </div>
+                <div class="moving-icons moving-icons-rtl" id="movingIcons2">
+                    <!-- سيتم إضافة الإيقونات بواسطة JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مربع مع صورة وإيقونات متحركة -->
+    <section class="image-icons-box">
+        <div class="container">
+            <div class="image-box">
+                <div class="image-box-content">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" alt="Sol 4k TV">
+                    <h3>تجربة مشاهدة استثنائية</h3>
+                    <p>استمتع بأفضل تجربة مشاهدة مع آلاف القنوات العالمية والعربية والرياضية بدقة 4K فائقة الوضوح. خدمة مستقرة ودعم فني على مدار الساعة.</p>
+                    
+                    <div class="image-box-icons">
+                        <div class="image-icons-moving" id="imageIconsMoving">
+                            <!-- سيتم إضافة الإيقونات بواسطة JavaScript -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1198,6 +1407,34 @@
             }
         ];
 
+        // بيانات الإيقونات المتحركة (10 إيقونات)
+        const movingIcons = [
+            { icon: "fas fa-tv", name: "قنوات 4K" },
+            { icon: "fas fa-futbol", name: "رياضة" },
+            { icon: "fas fa-film", name: "أفلام" },
+            { icon: "fas fa-music", name: "موسيقى" },
+            { icon: "fas fa-gamepad", name: "ألعاب" },
+            { icon: "fas fa-satellite-dish", name: "بث مباشر" },
+            { icon: "fas fa-wifi", name: "إنترنت سريع" },
+            { icon: "fas fa-mobile-alt", name: "متعدد الأجهزة" },
+            { icon: "fas fa-headphones", name: "دعم فني" },
+            { icon: "fas fa-gift", name: "عروض خاصة" }
+        ];
+
+        // بيانات إيقونات المربع الداخلي
+        const imageIcons = [
+            { icon: "fas fa-hd", name: "دقة عالية" },
+            { icon: "fas fa-clock", name: "24/7" },
+            { icon: "fas fa-globe", name: "عالمية" },
+            { icon: "fas fa-crown", name: "مميز" },
+            { icon: "fas fa-bolt", name: "سرعة" },
+            { icon: "fas fa-star", name: "جودة" },
+            { icon: "fas fa-thumbs-up", name: "موثوق" },
+            { icon: "fas fa-shield-alt", name: "آمن" },
+            { icon: "fas fa-rocket", name: "متقدم" },
+            { icon: "fas fa-award", name: "أفضل خدمة" }
+        ];
+
         // DOM Elements
         const cartIcon = document.getElementById('cartIcon');
         const cartModal = document.getElementById('cartModal');
@@ -1226,6 +1463,9 @@
         const userInfo = document.getElementById('userInfo');
         const loginLink = document.getElementById('loginLink');
         const userName = document.getElementById('userName');
+        const movingIcons1 = document.getElementById('movingIcons1');
+        const movingIcons2 = document.getElementById('movingIcons2');
+        const imageIconsMoving = document.getElementById('imageIconsMoving');
 
         // حالة التطبيق
         let currentUser = JSON.parse(localStorage.getItem('sol4k_user')) || null;
@@ -1237,10 +1477,51 @@
             updateUserUI();
             renderProducts();
             renderPlans();
+            renderMovingIcons();
+            renderImageIcons();
             
             // إذا كان المستخدم مسجل الدخول، تحديث واجهة المستخدم
             if (currentUser) {
                 showNotification(`مرحباً ${currentUser.name}`, 'success');
+            }
+        }
+
+        // عرض الإيقونات المتحركة
+        function renderMovingIcons() {
+            // عرض الإيقونات المتحركة الأولى (من اليمين لليسار)
+            movingIcons1.innerHTML = '';
+            movingIcons2.innerHTML = '';
+            
+            // تكرار الإيقونات لضمان استمرارية الحركة
+            for (let i = 0; i < 3; i++) {
+                movingIcons.forEach(icon => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'icon-item';
+                    iconItem.innerHTML = `
+                        <i class="${icon.icon}"></i>
+                        <span>${icon.name}</span>
+                    `;
+                    movingIcons1.appendChild(iconItem.cloneNode(true));
+                    movingIcons2.appendChild(iconItem.cloneNode(true));
+                });
+            }
+        }
+
+        // عرض إيقونات المربع الداخلي
+        function renderImageIcons() {
+            imageIconsMoving.innerHTML = '';
+            
+            // تكرار الإيقونات لضمان استمرارية الحركة
+            for (let i = 0; i < 4; i++) {
+                imageIcons.forEach(icon => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'image-icon-item';
+                    iconItem.innerHTML = `
+                        <i class="${icon.icon}"></i>
+                        <span>${icon.name}</span>
+                    `;
+                    imageIconsMoving.appendChild(iconItem);
+                });
             }
         }
 
@@ -1667,4 +1948,4 @@
         });
     </script>
 </body>
-  </html>
+</html>
