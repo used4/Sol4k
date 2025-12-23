@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol 4k - متجر اشتراكات IPTV والتسوق الإلكتروني</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #ff9800;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --gray-color: #6c757d;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .user-account a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #ff8a00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            font-size: 36px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff8a00;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #3d8b40;
+        }
+
+        /* Subscription Plans */
+        .subscription-plans {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .plan-card.popular {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            transform: scale(1.05);
+        }
+
+        .plan-card.popular::before {
+            content: 'الأكثر شعبية';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .plan-card.popular .plan-price,
+        .plan-card.popular .plan-features li,
+        .plan-card.popular .plan-title {
+            color: white;
+        }
+
+        .plan-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #666;
+        }
+
+        .plan-card.popular .plan-features li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .plan-features li i {
+            color: var(--success-color);
+            margin-left: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .plan-card.popular {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Auth Modals */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-title {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .auth-subtitle {
+            color: var(--gray-color);
+        }
+
+        .auth-form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-link {
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .auth-link:hover {
+            text-decoration: underline;
+        }
+
+        .close-auth {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 10px;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-items {
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            margin-left: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--danger-color);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .cart-summary {
+            border-top: 2px solid var(--primary-color);
+            padding-top: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-color);
+        }
+
+        .cart-empty-icon {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background-color: var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Sol <span>4k</span></div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#products">منتجاتنا</a></li>
+                    <li><a href="#subscriptions">اشتراكات IPTV</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn-logout" id="logoutBtn">تسجيل خروج</button>
+                </div>
+                
+                <div class="user-account" id="loginLink">
+                    <a href="#" id="loginBtn"><i class="fas fa-user"></i> تسجيل الدخول</a>
+                </div>
+                
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">تمت العملية بنجاح</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>مرحباً بكم في Sol 4k</h1>
+            <p>وجهتك الأولى للتسوق الإلكتروني واشتراكات IPTV عالية الجودة. استمتع بتجربة مشاهدة فريدة مع آلاف القنوات العالمية والرياضية والأفلام المباشرة بدقة 4K.</p>
+            <a href="#subscriptions" class="cta-button">اشتري اشتراكك الآن</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">مميزات Sol 4k</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>سرعة فائقة</h3>
+                    <p>خدمة سريعة وبدون تقطيع مع دعم كامل للبث بدقة 4K UHD</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>آمن وموثوق</h3>
+                    <p>دفع آمن مع ضمان استعادة الأموال خلال 30 يومًا</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني 24/7</h3>
+                    <p>فريق دعم فني متاح على مدار الساعة لمساعدتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>توصيل سريع</h3>
+                    <p>توصيل سريع للمنتجات المادية خلال 2-5 أيام عمل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- المنتجات سيتم إضافتها بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Plans -->
+    <section class="subscription-plans" id="subscriptions">
+        <div class="container">
+            <h2 class="section-title">باقات اشتراكات IPTV</h2>
+            <div class="plans-container" id="plansContainer">
+                <!-- الباقات سيتم إضافتها بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>عن Sol 4k</h3>
+                    <p>متجر إلكتروني متخصص في تقديم أفضل خدمات الاشتراكات IPTV وأحدث المنتجات الإلكترونية بجودة عالية وأسعار منافسة.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#products">منتجاتنا</a></li>
+                        <li><a href="#subscriptions">اشتراكات IPTV</a></li>
+                        <li><a href="#features">المميزات</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">اشتراكات IPTV</a></li>
+                        <li><a href="#">الأجهزة الإلكترونية</a></li>
+                        <li><a href="#">منتجات الألعاب</a></li>
+                        <li><a href="#">خدمة العملاء</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone"></i> +966 500 000 000</li>
+                        <li><i class="fas fa-envelope"></i> info@sol4k.com</li>
+                        <li><i class="fas fa-clock"></i> 24/7 خدمة العملاء</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 Sol 4k</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- تسجيل الدخول Modal -->
+    <div class="auth-modal" id="loginModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeLogin">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-title">تسجيل الدخول</h2>
+                <p class="auth-subtitle">ادخل بياناتك للدخول إلى حسابك</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">كلمة المرور</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">تسجيل الدخول</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>ليس لديك حساب؟ <span class="auth-link" id="goToRegister">سجل الآن</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تسجيل جديد Modal -->
+    <div class="auth-modal" id="registerModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeRegister">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-title">إنشاء حساب جديد</h2>
+                <p class="auth-subtitle">املأ البيانات التالية لإنشاء حساب جديد</p>
+            </div>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="registerName">الاسم الكامل</label>
+                    <input type="text" class="form-control" id="registerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="registerEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerPassword">كلمة المرور</label>
+                    <input type="password" class="form-control" id="registerPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="registerConfirmPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">إنشاء الحساب</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>لديك حساب بالفعل؟ <span class="auth-link" id="goToLogin">سجل الدخول</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>سلة التسوق</h2>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- سيتم ملء عناصر السلة بواسطة JavaScript -->
+            </div>
+            
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="cart-total">
+                    <span>الإجمالي:</span>
+                    <span id="cartTotalPrice">$0.00</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-success" id="checkoutBtn" style="flex: 2;">إتمام الشراء عبر واتساب</button>
+                    <button class="btn btn-secondary" style="flex: 1;">مواصلة التسوق</button>
+                </div>
+            </div>
+            
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>سلة التسوق فارغة</h3>
+                <p>لم تقم بإضافة أي منتجات إلى سلة التسوق بعد.</p>
+                <button class="btn btn-primary" id="continueShopping">استعرض المنتجات</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الموقع
+        const products = [
+            {
+                id: 1,
+                name: "باقة القنوات الرياضية",
+                category: "اشتراكات IPTV",
+                price: 15.99,
+                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "باقة خاصة بالقنوات الرياضية العالمية والمحلية مع دقة 4K"
+            },
+            {
+                id: 2,
+                name: "جهاز IPTV متطور",
+                category: "أجهزة",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "جهاز متكامل لتشغيل خدمة IPTV مع معالج سريع وذاكرة عالية"
+            },
+            {
+                id: 3,
+                name: "جهاز ألعاب متطور",
+                category: "ألعاب إلكترونية",
+                price: 499.99,
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "أحدث جهاز ألعاب مع تقنية 4K وتجربة لعب واقعية"
+            },
+            {
+                id: 4,
+                name: "سماعات رأس فائقة الجودة",
+                category: "إلكترونيات",
+                price: 129.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "سماعات لاسلكية مع تقنية إلغاء الضوضاء وجودة صوت عالية"
+            }
+        ];
+
+        const plans = [
+            {
+                id: 5,
+                name: "الباقة الأساسية",
+                price: 9.99,
+                popular: false,
+                features: [
+                    "1000+ قناة تلفزيونية",
+                    "دقة تصل إلى Full HD",
+                    "دليل برامج إلكتروني",
+                    "خدمة عملاء",
+                    "قنوات 4K",
+                    "قنوات رياضية متخصصة"
+                ]
+            },
+            {
+                id: 6,
+                name: "الباقة المميزة",
+                price: 15.99,
+                popular: true,
+                features: [
+                    "3000+ قناة تلفزيونية",
+                    "دقة تصل إلى 4K UHD",
+                    "دليل برامج إلكتروني",
+                    "دعم فني 24/7",
+                    "جميع القنوات الرياضية",
+                    "أكثر من 10000 فيلم ومسلسل"
+                ]
+            },
+            {
+                id: 7,
+                name: "الباقة العائلية",
+                price: 24.99,
+                popular: false,
+                features: [
+                    "5000+ قناة تلفزيونية",
+                    "دقة تصل إلى 4K UHD",
+                    "5 أجهزة متزامنة",
+                    "دعم فني 24/7",
+                    "جميع القنوات الرياضية",
+                    "مكتبة أفلام ومسلسلات ضخمة"
+                ]
+            }
+        ];
+
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav ul');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeRegister = document.getElementById('closeRegister');
+        const goToRegister = document.getElementById('goToRegister');
+        const goToLogin = document.getElementById('goToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const cartItems = document.getElementById('cartItems');
+        const cartEmpty = document.getElementById('cartEmpty');
+        const cartSummary = document.getElementById('cartSummary');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const continueShopping = document.getElementById('continueShopping');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        const userInfo = document.getElementById('userInfo');
+        const loginLink = document.getElementById('loginLink');
+        const userName = document.getElementById('userName');
+
+        // حالة التطبيق
+        let currentUser = JSON.parse(localStorage.getItem('sol4k_user')) || null;
+        let cart = JSON.parse(localStorage.getItem('sol4k_cart')) || [];
+        
+        // تهيئة التطبيق
+        function initApp() {
+            updateCartUI();
+            updateUserUI();
+            renderProducts();
+            renderPlans();
+            
+            // إذا كان المستخدم مسجل الدخول، تحديث واجهة المستخدم
+            if (currentUser) {
+                showNotification(`مرحباً ${currentUser.name}`, 'success');
+            }
+        }
+
+        // تحديث واجهة سلة التسوق
+        function updateCartUI() {
+            cartCount.textContent = cart.length;
+            
+            // تحديث localStorage
+            localStorage.setItem('sol4k_cart', JSON.stringify(cart));
+            
+            // إذا كانت السلة فارغة، إظهار رسالة السلة الفارغة
+            if (cart.length === 0) {
+                cartEmpty.style.display = 'block';
+                cartSummary.style.display = 'none';
+                cartItems.innerHTML = '';
+            } else {
+                cartEmpty.style.display = 'none';
+                cartSummary.style.display = 'block';
+                
+                // حساب الإجمالي
+                let total = 0;
+                cartItems.innerHTML = '';
+                
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartTotalPrice.textContent = `$${total.toFixed(2)}`;
+            }
+        }
+
+        // تحديث واجهة المستخدم
+        function updateUserUI() {
+            if (currentUser) {
+                userInfo.style.display = 'flex';
+                loginLink.style.display = 'none';
+                userName.textContent = currentUser.name;
+            } else {
+                userInfo.style.display = 'none';
+                loginLink.style.display = 'block';
+            }
+        }
+
+        // عرض المنتجات
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">أضف للسلة</button>
+                            <button class="btn btn-secondary">التفاصيل</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // عرض الباقات
+        function renderPlans() {
+            const plansContainer = document.getElementById('plansContainer');
+            plansContainer.innerHTML = '';
+            
+            plans.forEach(plan => {
+                const planCard = document.createElement('div');
+                planCard.className = `plan-card ${plan.popular ? 'popular' : ''}`;
+                
+                const featuresList = plan.features.map(feature => {
+                    const hasFeature = !feature.includes("قنوات 4K") || plan.id === 6 || plan.id === 7;
+                    return `
+                        <li>
+                            <i class="fas fa-${hasFeature ? 'check' : 'times'}"></i>
+                            ${feature}
+                        </li>
+                    `;
+                }).join('');
+                
+                planCard.innerHTML = `
+                    <h3 class="plan-title">${plan.name}</h3>
+                    <div class="plan-price">$${plan.price.toFixed(2)} <span>/شهرياً</span></div>
+                    <ul class="plan-features">
+                        ${featuresList}
+                    </ul>
+                    <button class="btn ${plan.popular ? 'btn-secondary' : 'btn-primary'}" onclick="addToCart(${plan.id}, '${plan.name}', ${plan.price}, 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">اشترك الآن</button>
+                `;
+                
+                plansContainer.appendChild(planCard);
+            });
+        }
+
+        // إضافة منتج للسلة
+        function addToCart(id, name, price, image) {
+            // التحقق إذا كان المستخدم مسجل الدخول
+            if (!currentUser) {
+                showNotification('يجب تسجيل الدخول أولاً لإضافة منتجات للسلة', 'error');
+                loginModal.style.display = 'flex';
+                return;
+            }
+            
+            // البحث عن المنتج في السلة
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showNotification(`تم إضافة "${name}" إلى سلة التسوق`, 'success');
+        }
+
+        // إزالة منتج من السلة
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+            showNotification('تم إزالة المنتج من السلة', 'success');
+        }
+
+        // تسجيل الدخول
+        function loginUser(email, password) {
+            // في التطبيق الحقيقي، هنا ستتم المصادقة مع الخادم
+            // للمثال، سنقوم بمحاكاة تسجيل الدخول
+            
+            // التحقق من صحة البيانات
+            if (!email || !password) {
+                showNotification('الرجاء إدخال البريد الإلكتروني وكلمة المرور', 'error');
+                return false;
+            }
+            
+            // محاكاة تسجيل الدخول الناجح
+            currentUser = {
+                id: 1,
+                name: 'محمد أحمد',
+                email: email
+            };
+            
+            // حفظ في localStorage
+            localStorage.setItem('sol4k_user', JSON.stringify(currentUser));
+            
+            // تحديث واجهة المستخدم
+            updateUserUI();
+            
+            // إغلاق نافذة تسجيل الدخول
+            loginModal.style.display = 'none';
+            
+            // إظهار إشعار
+            showNotification(`تم تسجيل الدخول بنجاح! مرحباً ${currentUser.name}`, 'success');
+            
+            return true;
+        }
+
+        // تسجيل حساب جديد
+        function registerUser(name, email, password, confirmPassword) {
+            // التحقق من صحة البيانات
+            if (!name || !email || !password || !confirmPassword) {
+                showNotification('الرجاء ملء جميع الحقول', 'error');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification('كلمات المرور غير متطابقة', 'error');
+                return false;
+            }
+            
+            if (password.length < 6) {
+                showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                return false;
+            }
+            
+            // محاكاة تسجيل ناجح
+            currentUser = {
+                id: Date.now(),
+                name: name,
+                email: email
+            };
+            
+            // حفظ في localStorage
+            localStorage.setItem('sol4k_user', JSON.stringify(currentUser));
+            
+            // تحديث واجهة المستخدم
+            updateUserUI();
+            
+            // إغلاق نافذة التسجيل
+            registerModal.style.display = 'none';
+            
+            // إظهار إشعار
+            showNotification(`تم إنشاء الحساب بنجاح! مرحباً ${currentUser.name}`, 'success');
+            
+            return true;
+        }
+
+        // تسجيل الخروج
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('sol4k_user');
+            updateUserUI();
+            showNotification('تم تسجيل الخروج بنجاح', 'success');
+        }
+
+        // إتمام الشراء عبر واتساب
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification('سلة التسوق فارغة', 'error');
+                return;
+            }
+            
+            // إنشاء رسالة الطلب
+            let message = `مرحباً، أريد شراء المنتجات التالية من متجر Sol 4k:\n\n`;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)} × ${item.quantity}\n`;
+            });
+            
+            // حساب الإجمالي
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nالمجموع: $${total.toFixed(2)}`;
+            
+            // إضافة معلومات المستخدم
+            if (currentUser) {
+                message += `\n\nمعلومات العميل:\nالاسم: ${currentUser.name}\nالبريد: ${currentUser.email}`;
+            }
+            
+            message += `\n\nشكراً لكم، Sol 4k`;
+            
+            // ترميز الرسالة للرابط
+            const encodedMessage = encodeURIComponent(message);
+            
+            // إنشاء رابط واتساب
+            const phoneNumber = "966500000000"; // رقم واتساب المتجر
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // فتح الرابط في نافذة جديدة
+            window.open(whatsappUrl, '_blank');
+            
+            // إفراغ السلة بعد إتمام الطلب
+            cart = [];
+            updateCartUI();
+            
+            // إغلاق نافذة السلة
+            cartModal.style.display = 'none';
+            
+            showNotification('تم إنشاء طلبك، سيتم التواصل معك عبر واتساب', 'success');
+        }
+
+        // إظهار الإشعار
+        function showNotification(text, type = 'success') {
+            notificationText.textContent = text;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+        });
+        
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        // Close cart modal when clicking outside
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+        
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.right = '0';
+                nav.style.backgroundColor = 'var(--primary-color)';
+                nav.style.width = '100%';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    nav.style.display = 'none';
+                }
+            });
+        });
+        
+        // تسجيل الدخول
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+        });
+        
+        // تسجيل الخروج
+        logoutBtn.addEventListener('click', logoutUser);
+        
+        // إغلاق نافذة تسجيل الدخول
+        closeLogin.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+        
+        // إغلاق نافذة التسجيل
+        closeRegister.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+        });
+        
+        // الانتقال إلى نافذة التسجيل
+        goToRegister.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+        
+        // الانتقال إلى نافذة تسجيل الدخول
+        goToLogin.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+        
+        // إغلاق النوافذ عند النقر خارجها
+        [loginModal, registerModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+        
+        // معالجة تسجيل الدخول
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            loginUser(email, password);
+        });
+        
+        // معالجة التسجيل
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            registerUser(name, email, password, confirmPassword);
+        });
+        
+        // إتمام الشراء
+        checkoutBtn.addEventListener('click', checkout);
+        
+        // مواصلة التسوق
+        continueShopping.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+            window.location.href = '#products';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
