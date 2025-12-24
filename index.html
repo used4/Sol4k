@@ -1,0 +1,3145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol 4k - متجر اشتراكات IPTV والتسوق الإلكتروني</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        :root {
+            --primary-color: #0a2463;
+            --secondary-color: #3e78b2;
+            --accent-color: #ff6b6b;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4ecdc4;
+            --danger-color: #ff6b6b;
+            --gray-color: #6c757d;
+            --gradient-1: linear-gradient(135deg, #0a2463, #3e78b2);
+            --gradient-2: linear-gradient(135deg, #3e78b2, #4ecdc4);
+            --gradient-3: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            --background-color: #ffffff;
+            --card-background: #ffffff;
+            --text-color: #212529;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode {
+            --primary-color: #3e78b2;
+            --secondary-color: #4ecdc4;
+            --accent-color: #ff8e53;
+            --light-color: #1a1a2e;
+            --dark-color: #f8f9fa;
+            --background-color: #121212;
+            --card-background: #1e1e2e;
+            --text-color: #f8f9fa;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* خلفية متحركة محسنة */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background-color) 0%, rgba(10, 36, 99, 0.05) 100%);
+        }
+
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            filter: blur(1px);
+            opacity: 0.7;
+        }
+
+        .bg-particle:nth-child(1n) {
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+
+        .bg-particle:nth-child(2n) {
+            background: radial-gradient(circle, var(--secondary-color) 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .bg-particle:nth-child(3n) {
+            background: radial-gradient(circle, var(--success-color) 0%, transparent 70%);
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+
+        .bg-particle:nth-child(4n) {
+            background: radial-gradient(circle, #ffcc00 0%, transparent 70%);
+            animation-duration: 22s;
+            animation-delay: -7s;
+        }
+
+        .bg-particle:nth-child(5n) {
+            background: radial-gradient(circle, #9c27b0 0%, transparent 70%);
+            animation-duration: 28s;
+            animation-delay: -12s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(var(--background-color), 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--primary-color);
+            padding: 15px 0;
+            box-shadow: 0 4px 30px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 36, 99, 0.1);
+        }
+
+        body.dark-mode header {
+            background: rgba(30, 30, 46, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        nav ul li a:hover::before {
+            width: 80%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .language-switcher, .theme-switcher {
+            position: relative;
+        }
+
+        .language-btn, .theme-btn {
+            background: var(--card-background);
+            color: var(--text-color);
+            border: 1px solid rgba(10, 36, 99, 0.2);
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-btn:hover, .theme-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 36, 99, 0.3);
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            z-index: 1001;
+            min-width: 120px;
+            border: 1px solid rgba(10, 36, 99, 0.1);
+        }
+
+        .language-dropdown.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .language-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .language-option:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .language-option.active {
+            background: var(--gradient-3);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            background: var(--card-background);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            color: var(--primary-color);
+        }
+
+        .cart-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: var(--gradient-3);
+            color: white;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-name {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .user-account a {
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(10, 36, 99, 0.2);
+        }
+
+        .user-account a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(10, 36, 99, 0.3);
+            background: var(--gradient-2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 24px;
+            cursor: pointer;
+            background: var(--card-background);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.9), rgba(62, 120, 178, 0.9)), url('https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+            animation: floatBackground 20s linear infinite;
+        }
+
+        @keyframes floatBackground {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            100% {
+                transform: translateY(-100px) translateX(-100px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-3);
+            color: white;
+            padding: 18px 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.5);
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--card-background);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            font-size: 42px;
+            position: relative;
+            font-weight: 800;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient-3);
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow-color);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(10, 36, 99, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-3);
+            z-index: 2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        /* إيقونات متحركة - تم تحسين التصميم */
+        .moving-icons-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--light-color), var(--card-background));
+            overflow: hidden;
+            position: relative;
+        }
+
+        .moving-icons-container {
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .moving-icons {
+            display: flex;
+            animation: moveIcons 20s linear infinite; /* تم تقليل المدة لزيادة السرعة */
+            gap: 40px;
+        }
+
+        .moving-icons-rtl {
+            animation-direction: reverse;
+            animation-duration: 18s; /* تم تقليل المدة لزيادة السرعة */
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            min-width: 120px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .icon-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+            transition: all 0.3s ease;
+        }
+
+        .icon-item:hover img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+        }
+
+        .icon-item span {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes moveIcons {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* مربع مع صورة وإيقونات متحركة - تم تحسين التصميم */
+        .image-icons-box {
+            padding: 80px 0;
+            background: var(--card-background);
+            position: relative;
+        }
+
+        .image-box {
+            background: var(--gradient-1);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(10, 36, 99, 0.2);
+            position: relative;
+        }
+
+        .image-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+            animation: floatBackground 30s linear infinite;
+        }
+
+        .image-box-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-box-content img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .image-box-content img:hover {
+            transform: scale(1.05) rotate(5deg);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .image-box-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-box-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .image-box-icons {
+            width: 100%;
+            overflow: hidden;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .image-icons-moving {
+            display: flex;
+            animation: moveIconsFast 12s linear infinite; /* تم تقليل المدة لزيادة السرعة */
+            gap: 40px;
+        }
+
+        .image-icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            min-width: 100px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .image-icon-item:hover {
+            transform: scale(1.1);
+        }
+
+        .image-icon-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .image-icon-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .image-icon-item span {
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes moveIconsFast {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--light-color), var(--card-background));
+            position: relative;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--card-background);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px var(--shadow-color);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(10, 36, 99, 0.1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            color: var(--accent-color);
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        .product-description {
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .product-price {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 5px 20px rgba(10, 36, 99, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.4);
+            background: var(--gradient-2);
+        }
+
+        .btn-secondary {
+            background: rgba(10, 36, 99, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(10, 36, 99, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(10, 36, 99, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-success {
+            background: var(--gradient-3);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Subscription Plans */
+        .subscription-plans {
+            padding: 100px 0;
+            background: var(--card-background);
+            position: relative;
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .plan-card {
+            background: var(--card-background);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 50px var(--shadow-color);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent-color);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+
+        .plan-card.popular {
+            background: var(--gradient-1);
+            color: white;
+            position: relative;
+            transform: scale(1.05);
+            border: none;
+        }
+
+        .plan-card.popular::before {
+            content: attr(data-popular-text);
+            position: absolute;
+            top: -12px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--gradient-3);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+            z-index: 3;
+        }
+
+        .plan-card.popular .plan-price,
+        .plan-card.popular .plan-features li,
+        .plan-card.popular .plan-title {
+            color: white;
+        }
+
+        .plan-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .plan-price span {
+            font-size: 18px;
+            color: var(--text-color);
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        .plan-card.popular .plan-price span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 40px;
+            text-align: right;
+        }
+
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .plan-card.popular .plan-features li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .plan-features li i {
+            color: var(--success-color);
+            margin-left: 10px;
+            font-size: 18px;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            padding: 60px 0;
+            background: var(--light-color);
+            border-top: 1px solid rgba(10, 36, 99, 0.1);
+        }
+
+        .payment-methods h3 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .payment-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .payment-icon:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .payment-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .payment-icon span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-1);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            animation: floatBackground 25s linear infinite;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-column h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px) rotate(10deg);
+            border-color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Social Media Buttons */
+        .floating-social {
+            position: fixed;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-social.right {
+            right: 20px;
+            bottom: 100px;
+        }
+
+        .floating-social.left {
+            left: 20px;
+            bottom: 100px;
+        }
+
+        .floating-btn {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .floating-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .floating-btn.telegram {
+            background: #0088cc;
+        }
+
+        .floating-btn.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .floating-btn.messenger {
+            background: #006AFF;
+        }
+
+        .floating-label {
+            position: absolute;
+            right: 70px;
+            background: var(--card-background);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .floating-btn:hover .floating-label {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        .floating-social.left .floating-label {
+            right: auto;
+            left: 70px;
+        }
+
+        .floating-social.left .floating-btn:hover .floating-label {
+            left: 75px;
+            right: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .plan-card.popular {
+                transform: scale(1);
+            }
+
+            /* إظهار الأيقونات العائمة على الهواتف */
+            .floating-social {
+                display: flex !important;
+            }
+
+            .floating-social.right {
+                right: 15px;
+                bottom: 80px;
+            }
+
+            .floating-social.left {
+                left: 15px;
+                bottom: 80px;
+            }
+
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            .floating-label {
+                display: none;
+            }
+            
+            /* تحسين الأيقونات المتحركة للهواتف */
+            .icon-item {
+                min-width: 100px;
+                padding: 15px;
+            }
+            
+            .icon-item img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .moving-icons {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .header-actions {
+                order: 2;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-icons {
+                gap: 15px;
+            }
+
+            .payment-icon {
+                min-width: 100px;
+                padding: 15px;
+            }
+
+            /* تحسين الأيقونات العائمة للهواتف الصغيرة */
+            .floating-social.right {
+                right: 10px;
+                bottom: 70px;
+            }
+
+            .floating-social.left {
+                left: 10px;
+                bottom: 70px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            /* تحسين الأيقونات المتحركة للهواتف الصغيرة */
+            .icon-item {
+                min-width: 80px;
+                padding: 10px;
+            }
+            
+            .icon-item img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .moving-icons {
+                gap: 20px;
+            }
+            
+            .icon-item span {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .floating-social {
+                gap: 10px;
+            }
+
+            .floating-social.right {
+                right: 8px;
+                bottom: 60px;
+            }
+
+            .floating-social.left {
+                left: 8px;
+                bottom: 60px;
+            }
+
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+            
+            /* تحسين الأيقونات المتحركة للهواتف الصغيرة جداً */
+            .icon-item {
+                min-width: 70px;
+                padding: 8px;
+            }
+            
+            .icon-item img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .icon-item span {
+                font-size: 12px;
+            }
+            
+            .moving-icons {
+                gap: 15px;
+            }
+        }
+
+        /* Auth Modals */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-content {
+            background: var(--card-background);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient-3);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .auth-title {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .auth-subtitle {
+            color: var(--gray-color);
+            font-size: 16px;
+        }
+
+        .auth-form {
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(10, 36, 99, 0.2);
+            border-radius: 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(10, 36, 99, 0.03);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 5px 20px rgba(10, 36, 99, 0.1);
+            background: var(--card-background);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .auth-link {
+            color: var(--accent-color);
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .auth-link:hover {
+            text-decoration: underline;
+        }
+
+        .close-auth {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(10, 36, 99, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-auth:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-content {
+            background: var(--card-background);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            border-radius: 25px;
+            padding: 40px;
+            overflow-y: auto;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .cart-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient-3);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(10, 36, 99, 0.1);
+        }
+
+        .cart-header h2 {
+            color: var(--primary-color);
+        }
+
+        .close-cart {
+            background: rgba(10, 36, 99, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-cart:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            margin-left: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+
+        .cart-item-price {
+            color: var(--accent-color);
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .cart-item-remove {
+            background: rgba(255, 107, 107, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .cart-item-remove:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: rotate(15deg);
+        }
+
+        .cart-summary {
+            border-top: 3px solid var(--gradient-1);
+            padding-top: 30px;
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.03), rgba(62, 120, 178, 0.03));
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 40px;
+            color: var(--gray-color);
+        }
+
+        .cart-empty-icon {
+            font-size: 80px;
+            color: #ddd;
+            margin-bottom: 25px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #25D366;
+            color: white;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .whatsapp-button:hover {
+            background: #1da851;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+            color: white;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--gradient-3);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: var(--gradient-3);
+        }
+    </style>
+</head>
+<body>
+    <!-- خلفية متحركة محسنة -->
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Sol <span>4k</span></div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                    <li><a href="#products" data-ar="منتجاتنا" data-en="Products">منتجاتنا</a></li>
+                    <li><a href="#subscriptions" data-ar="اشتراكات IPTV" data-en="IPTV Subscriptions">اشتراكات IPTV</a></li>
+                    <li><a href="#features" data-ar="المميزات" data-en="Features">المميزات</a></li>
+                    <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+                    <li><a href="#contact" data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="language-switcher">
+                    <button class="language-btn" id="languageBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLanguage">العربية</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <div class="language-option active" data-lang="ar">العربية</div>
+                        <div class="language-option" data-lang="en">English</div>
+                    </div>
+                </div>
+                
+                <div class="theme-switcher">
+                    <button class="theme-btn" id="themeBtn">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                        <span id="themeText">الوضع الداكن</span>
+                    </button>
+                </div>
+                
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <span class="user-name" id="userName"></span>
+                    <button class="btn-logout" id="logoutBtn" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</button>
+                </div>
+                
+                <div class="user-account" id="loginLink">
+                    <!-- تم تغيير النص من "تسجيل الدخول" إلى "إنشاء حساب" -->
+                    <a href="#" id="registerBtn"><i class="fas fa-user-plus"></i> <span data-ar="إنشاء حساب" data-en="Create Account">إنشاء حساب</span></a>
+                </div>
+                
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="floating-social right">
+        <a href="https://wa.me/+9647714897390" class="floating-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-label" data-ar="هل تحتاج إلى مساعدة؟" data-en="Need Help?">هل تحتاج إلى مساعدة؟</span>
+        </a>
+    </div>
+    
+    <div class="floating-social left">
+        <a href="https://www.instagram.com/" class="floating-btn instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+            <span class="floating-label">Instagram</span>
+        </a>
+        <a href="https://telegram.org/" class="floating-btn telegram" target="_blank">
+            <i class="fab fa-telegram"></i>
+            <span class="floating-label">Telegram</span>
+        </a>
+        <a href="https://www.messenger.com/" class="floating-btn messenger" target="_blank">
+            <i class="fab fa-facebook-messenger"></i>
+            <span class="floating-label">Messenger</span>
+        </a>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">تمت العملية بنجاح</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 data-ar="مرحباً بكم في Sol 4k" data-en="Welcome to Sol 4k">مرحباً بكم في Sol 4k</h1>
+            <p data-ar="وجهتك الأولى للتسوق الإلكتروني واشتراكات IPTV عالية الجودة. استمتع بتجربة مشاهدة فريدة مع آلاف القنوات العالمية والرياضية والأفلام المباشرة بدقة 4K." data-en="Your premier destination for e-commerce and high-quality IPTV subscriptions. Enjoy a unique viewing experience with thousands of global channels, sports, and live movies in 4K resolution.">وجهتك الأولى للتسوق الإلكتروني واشتراكات IPTV عالية الجودة. استمتع بتجربة مشاهدة فريدة مع آلاف القنوات العالمية والرياضية والأفلام المباشرة بدقة 4K.</p>
+            <a href="#subscriptions" class="cta-button" data-ar="اشتري اشتراكك الآن" data-en="Buy Your Subscription Now">اشتري اشتراكك الآن</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" data-ar="مميزات Sol 4k" data-en="Sol 4k Features">مميزات Sol 4k</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 data-ar="سرعة فائقة" data-en="Ultra Fast">سرعة فائقة</h3>
+                    <p data-ar="خدمة سريعة وبدون تقطيع مع دعم كامل للبث بدقة 4K UHD" data-en="Fast, uninterrupted service with full support for 4K UHD streaming">خدمة سريعة وبدون تقطيع مع دعم كامل للبث بدقة 4K UHD</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 data-ar="آمن وموثوق" data-en="Secure & Reliable">آمن وموثوق</h3>
+                    <p data-ar="دفع آمن مع ضمان استعادة الأموال خلال 30 يومًا" data-en="Secure payment with 30-day money-back guarantee">دفع آمن مع ضمان استعادة الأموال خلال 30 يومًا</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 data-ar="دعم فني 24/7" data-en="24/7 Technical Support">دعم فني 24/7</h3>
+                    <p data-ar="فريق دعم فني متاح على مدار الساعة لمساعدتك" data-en="Technical support team available 24/7 to assist you">فريق دعم فني متاح على مدار الساعة لمساعدتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 data-ar="توصيل سريع" data-en="Fast Delivery">توصيل سريع</h3>
+                    <p data-ar="توصيل سريع للمنتجات المادية خلال 2-5 أيام عمل" data-en="Fast delivery of physical products within 2-5 working days">توصيل سريع للمنتجات المادية خلال 2-5 أيام عمل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- إيقونات متحركة -->
+    <section class="moving-icons-section">
+        <div class="container">
+            <h2 class="section-title" data-ar="خدماتنا المتكاملة" data-en="Our Integrated Services">خدماتنا المتكاملة</h2>
+            <div class="moving-icons-container">
+                <div class="moving-icons" id="movingIcons1"></div>
+                <div class="moving-icons moving-icons-rtl" id="movingIcons2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مربع مع صورة وإيقونات متحركة -->
+    <section class="image-icons-box">
+        <div class="container">
+            <div class="image-box">
+                <div class="image-box-content">
+                    <img src="https://j.top4top.io/p_3645dxi2v1.png" alt="Sol 4k TV">
+                    <h3 data-ar="تجربة مشاهدة استثنائية" data-en="Exceptional Viewing Experience">تجربة مشاهدة استثنائية</h3>
+                    <p data-ar="استمتع بأفضل تجربة مشاهدة مع آلاف القنوات العالمية والعربية والرياضية بدقة 4K فائقة الوضوح. خدمة مستقرة ودعم فني على مدار الساعة." data-en="Enjoy the best viewing experience with thousands of global, Arabic, and sports channels in crystal clear 4K resolution. Stable service and 24/7 technical support.">استمتع بأفضل تجربة مشاهدة مع آلاف القنوات العالمية والعربية والرياضية بدقة 4K فائقة الوضوح. خدمة مستقرة ودعم فني على مدار الساعة.</p>
+                    
+                    <div class="image-box-icons">
+                        <div class="image-icons-moving" id="imageIconsMoving"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title" data-ar="منتجاتنا المميزة" data-en="Our Featured Products">منتجاتنا المميزة</h2>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Subscription Plans -->
+    <section class="subscription-plans" id="subscriptions">
+        <div class="container">
+            <h2 class="section-title" data-ar="باقات اشتراكات IPTV" data-en="IPTV Subscription Plans">باقات اشتراكات IPTV</h2>
+            <div class="plans-container" id="plansContainer"></div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="payment-methods">
+        <div class="container">
+            <h3 data-ar="وسائل الدفع المتاحة" data-en="Available Payment Methods">وسائل الدفع المتاحة</h3>
+            <div class="payment-icons">
+                <div class="payment-icon">
+                    <i class="fab fa-cc-mastercard fa-3x" style="color: #ff5f00;"></i>
+                    <span>Mastercard</span>
+                </div>
+                <div class="payment-icon">
+                    <i class="fab fa-cc-visa fa-3x" style="color: #1a1f71;"></i>
+                    <span>Visa</span>
+                </div>
+                <div class="payment-icon">
+                    <i class="fab fa-cc-paypal fa-3x" style="color: #003087;"></i>
+                    <span>PayPal</span>
+                </div>
+                <div class="payment-icon">
+                    <i class="fab fa-apple-pay fa-3x" style="color: #000;"></i>
+                    <span>Apple Pay</span>
+                </div>
+                <div class="payment-icon">
+                    <i class="fab fa-google-pay fa-3x" style="color: #5f6368;"></i>
+                    <span>Google Pay</span>
+                </div>
+                <div class="payment-icon">
+                    <i class="fas fa-credit-card fa-3x" style="color: #0066cc;"></i>
+                    <span data-ar="بطاقات ائتمان أخرى" data-en="Other Cards">بطاقات ائتمان أخرى</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 data-ar="عن Sol 4k" data-en="About Sol 4k">عن Sol 4k</h3>
+                    <p data-ar="متجر إلكتروني متخصص في تقديم أفضل خدمات الاشتراكات IPTV وأحدث المنتجات الإلكترونية بجودة عالية وأسعار منافسة." data-en="An e-store specializing in providing the best IPTV subscription services and the latest electronic products with high quality and competitive prices.">متجر إلكتروني متخصص في تقديم أفضل خدمات الاشتراكات IPTV وأحدث المنتجات الإلكترونية بجودة عالية وأسعار منافسة.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://telegram.org/" target="_blank"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-left"></i> <span data-ar="الرئيسية" data-en="Home">الرئيسية</span></a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-left"></i> <span data-ar="منتجاتنا" data-en="Products">منتجاتنا</span></a></li>
+                        <li><a href="#subscriptions"><i class="fas fa-chevron-left"></i> <span data-ar="اشتراكات IPTV" data-en="IPTV Subscriptions">اشتراكات IPTV</span></a></li>
+                        <li><a href="#features"><i class="fas fa-chevron-left"></i> <span data-ar="المميزات" data-en="Features">المميزات</span></a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-left"></i> <span data-ar="من نحن" data-en="About Us">من نحن</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-ar="خدماتنا" data-en="Our Services">خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> <span data-ar="اشتراكات IPTV" data-en="IPTV Subscriptions">اشتراكات IPTV</span></a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> <span data-ar="الأجهزة الإلكترونية" data-en="Electronic Devices">الأجهزة الإلكترونية</span></a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> <span data-ar="منتجات الألعاب" data-en="Gaming Products">منتجات الألعاب</span></a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> <span data-ar="خدمة العملاء" data-en="Customer Service">خدمة العملاء</span></a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> <span data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> <span data-ar="العراق" data-en="IRAQ"> العراق  </span></a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +306949671250</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@sol4k.com</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> <span data-ar="24/7 خدمة العملاء" data-en="24/7 Customer Service">24/7 خدمة العملاء</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p data-ar="جميع الحقوق محفوظة &copy; 2026 Sol 4k" data-en="All rights reserved &copy; 2026 Sol 4k">جميع الحقوق محفوظة &copy; 2026 Sol 4k</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- تسجيل جديد Modal - الآن هي الافتراضية -->
+    <div class="auth-modal" id="registerModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeRegister">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-title" data-ar="إنشاء حساب جديد" data-en="Create New Account">إنشاء حساب جديد</h2>
+                <p class="auth-subtitle" data-ar="املأ البيانات التالية لإنشاء حساب جديد" data-en="Fill in the following information to create a new account">املأ البيانات التالية لإنشاء حساب جديد</p>
+            </div>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="registerName" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                    <input type="text" class="form-control" id="registerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerEmail" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="registerEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerPassword" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <input type="password" class="form-control" id="registerPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="registerConfirmPassword" data-ar="تأكيد كلمة المرور" data-en="Confirm Password">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="registerConfirmPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 16px;" data-ar="إنشاء الحساب" data-en="Create Account">إنشاء الحساب</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p data-ar="لديك حساب بالفعل؟" data-en="Already have an account?">لديك حساب بالفعل؟ <span class="auth-link" id="goToLogin" data-ar="سجل الدخول" data-en="Login">سجل الدخول</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تسجيل الدخول Modal - الآن هي الثانوية -->
+    <div class="auth-modal" id="loginModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeLogin">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-title" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h2>
+                <p class="auth-subtitle" data-ar="ادخل بياناتك للدخول إلى حسابك" data-en="Enter your credentials to access your account">ادخل بياناتك للدخول إلى حسابك</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 16px;" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟ <span class="auth-link" id="goToRegister" data-ar="سجل الآن" data-en="Register Now">سجل الآن</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 data-ar="سلة التسوق" data-en="Shopping Cart">سلة التسوق</h2>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems"></div>
+            
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="cart-total">
+                    <span data-ar="الإجمالي:" data-en="Total:">الإجمالي:</span>
+                    <span id="cartTotalPrice">$0.00</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-success whatsapp-button" id="checkoutBtn">
+                        <i class="fab fa-whatsapp"></i> <span data-ar="إتمام الشراء عبر واتساب" data-en="Complete Purchase via WhatsApp">إتمام الشراء عبر واتساب</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3 data-ar="سلة التسوق فارغة" data-en="Your cart is empty">سلة التسوق فارغة</h3>
+                <p data-ar="لم تقم بإضافة أي منتجات إلى سلة التسوق بعد." data-en="You haven't added any products to your cart yet.">لم تقم بإضافة أي منتجات إلى سلة التسوق بعد.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات الترجمة
+        const translations = {
+            ar: {
+                // Header
+                "home": "الرئيسية",
+                "products": "منتجاتنا",
+                "subscriptions": "اشتراكات IPTV",
+                "features": "المميزات",
+                "about": "من نحن",
+                "contact": "اتصل بنا",
+                "createAccount": "إنشاء حساب",
+                "login": "تسجيل الدخول",
+                "logout": "تسجيل خروج",
+                "darkMode": "الوضع الداكن",
+                "lightMode": "الوضع الفاتح",
+                
+                // Hero
+                "welcome": "مرحباً بكم في Sol 4k",
+                "heroDesc": "وجهتك الأولى للتسوق الإلكتروني واشتراكات IPTV عالية الجودة. استمتع بتجربة مشاهدة فريدة مع آلاف القنوات العالمية والرياضية والأفلام المباشرة بدقة 4K.",
+                "buyNow": "اشتري اشتراكك الآن",
+                
+                // Features
+                "featuresTitle": "مميزات Sol 4k",
+                "feature1": "سرعة فائقة",
+                "feature1Desc": "خدمة سريعة وبدون تقطيع مع دعم كامل للبث بدقة 4K UHD",
+                "feature2": "آمن وموثوق",
+                "feature2Desc": "دفع آمن مع ضمان استعادة الأموال خلال 30 يومًا",
+                "feature3": "دعم فني 24/7",
+                "feature3Desc": "فريق دعم فني متاح على مدار الساعة لمساعدتك",
+                "feature4": "توصيل سريع",
+                "feature4Desc": "توصيل سريع للمنتجات المادية خلال 2-5 أيام عمل",
+                
+                // Services
+                "servicesTitle": "خدماتنا المتكاملة",
+                
+                // Image Box
+                "imageBoxTitle": "تجربة مشاهدة استثنائية",
+                "imageBoxDesc": "استمتع بأفضل تجربة مشاهدة مع آلاف القنوات العالمية والعربية والرياضية بدقة 4K فائقة الوضوح. خدمة مستقرة ودعم فني على مدار الساعة.",
+                
+                // Products
+                "productsTitle": "منتجاتنا المميزة",
+                
+                // Plans
+                "plansTitle": "باقات اشتراكات IPTV",
+                "mostPopular": "الأكثر شعبية",
+                "subscribe": "اشترك الآن",
+                "monthly": "/شهرياً",
+                
+                // Payment
+                "paymentTitle": "وسائل الدفع المتاحة",
+                "otherCards": "بطاقات ائتمان أخرى",
+                
+                // Footer
+                "aboutUs": "عن Sol 4k",
+                "aboutDesc": "متجر إلكتروني متخصص في تقديم أفضل خدمات الاشتراكات IPTV وأحدث المنتجات الإلكترونية بجودة عالية وأسعار منافسة.",
+                "quickLinks": "روابط سريعة",
+                "ourServices": "خدماتنا",
+                "contactUs": "اتصل بنا",
+                "copyright": "جميع الحقوق محفوظة © 2023 Sol 4k",
+                
+                // Cart
+                "cartTitle": "سلة التسوق",
+                "total": "الإجمالي:",
+                "completePurchase": "إتمام الشراء عبر واتساب",
+                "continueShopping": "مواصلة التسوق",
+                "emptyCart": "سلة التسوق فارغة",
+                "emptyCartDesc": "لم تقم بإضافة أي منتجات إلى سلة التسوق بعد.",
+                "browseProducts": "استعرض المنتجات",
+                
+                // Auth
+                "loginTitle": "تسجيل الدخول",
+                "loginSubtitle": "ادخل بياناتك للدخول إلى حسابك",
+                "registerTitle": "إنشاء حساب جديد",
+                "registerSubtitle": "املأ البيانات التالية لإنشاء حساب جديد",
+                "fullName": "الاسم الكامل",
+                "email": "البريد الإلكتروني",
+                "password": "كلمة المرور",
+                "confirmPassword": "تأكيد كلمة المرور",
+                "createAccount": "إنشاء الحساب",
+                "haveAccount": "لديك حساب بالفعل؟",
+                "noAccount": "ليس لديك حساب؟",
+                "registerNow": "سجل الآن",
+                "loginNow": "سجل الدخول",
+                
+                // Notifications
+                "loginSuccess": "تم تسجيل الدخول بنجاح",
+                "registerSuccess": "تم إنشاء الحساب بنجاح",
+                "logoutSuccess": "تم تسجيل الخروج بنجاح",
+                "addedToCart": "تم الإضافة إلى السلة",
+                "removedFromCart": "تم الإزالة من السلة",
+                "checkoutSuccess": "تم إنشاء الطلب بنجاح",
+                
+                // Help
+                "needHelp": "هل تحتاج إلى مساعدة؟"
+            },
+            en: {
+                // Header
+                "home": "Home",
+                "products": "Products",
+                "subscriptions": "IPTV Subscriptions",
+                "features": "Features",
+                "about": "About Us",
+                "contact": "Contact Us",
+                "createAccount": "Create Account",
+                "login": "Login",
+                "logout": "Logout",
+                "darkMode": "Dark Mode",
+                "lightMode": "Light Mode",
+                
+                // Hero
+                "welcome": "Welcome to Sol 4k",
+                "heroDesc": "Your premier destination for e-commerce and high-quality IPTV subscriptions. Enjoy a unique viewing experience with thousands of global channels, sports, and live movies in 4K resolution.",
+                "buyNow": "Buy Your Subscription Now",
+                
+                // Features
+                "featuresTitle": "Sol 4k Features",
+                "feature1": "Ultra Fast",
+                "feature1Desc": "Fast, uninterrupted service with full support for 4K UHD streaming",
+                "feature2": "Secure & Reliable",
+                "feature2Desc": "Secure payment with 30-day money-back guarantee",
+                "feature3": "24/7 Technical Support",
+                "feature3Desc": "Technical support team available 24/7 to assist you",
+                "feature4": "Fast Delivery",
+                "feature4Desc": "Fast delivery of physical products within 2-5 working days",
+                
+                // Services
+                "servicesTitle": "Our Integrated Services",
+                
+                // Image Box
+                "imageBoxTitle": "Exceptional Viewing Experience",
+                "imageBoxDesc": "Enjoy the best viewing experience with thousands of global, Arabic, and sports channels in crystal clear 4K resolution. Stable service and 24/7 technical support.",
+                
+                // Products
+                "productsTitle": "Our Featured Products",
+                
+                // Plans
+                "plansTitle": "IPTV Subscription Plans",
+                "mostPopular": "Most Popular",
+                "subscribe": "Subscribe Now",
+                "monthly": "/monthly",
+                
+                // Payment
+                "paymentTitle": "Available Payment Methods",
+                "otherCards": "Other Cards",
+                
+                // Footer
+                "aboutUs": "About Sol 4k",
+                "aboutDesc": "An e-store specializing in providing the best IPTV subscription services and the latest electronic products with high quality and competitive prices.",
+                "quickLinks": "Quick Links",
+                "ourServices": "Our Services",
+                "contactUs": "Contact Us",
+                "copyright": "All rights reserved © 2023 Sol 4k",
+                
+                // Cart
+                "cartTitle": "Shopping Cart",
+                "total": "Total:",
+                "completePurchase": "Complete Purchase via WhatsApp",
+                "continueShopping": "Continue Shopping",
+                "emptyCart": "Your cart is empty",
+                "emptyCartDesc": "You haven't added any products to your cart yet.",
+                "browseProducts": "Browse Products",
+                
+                // Auth
+                "loginTitle": "Login",
+                "loginSubtitle": "Enter your credentials to access your account",
+                "registerTitle": "Create New Account",
+                "registerSubtitle": "Fill in the following information to create a new account",
+                "fullName": "Full Name",
+                "email": "Email",
+                "password": "Password",
+                "confirmPassword": "Confirm Password",
+                "createAccount": "Create Account",
+                "haveAccount": "Already have an account?",
+                "noAccount": "Don't have an account?",
+                "registerNow": "Register Now",
+                "loginNow": "Login Now",
+                
+                // Notifications
+                "loginSuccess": "Logged in successfully",
+                "registerSuccess": "Account created successfully",
+                "logoutSuccess": "Logged out successfully",
+                "addedToCart": "Added to cart",
+                "removedFromCart": "Removed from cart",
+                "checkoutSuccess": "Order created successfully",
+                
+                // Help
+                "needHelp": "Need Help?"
+            }
+        };
+
+        // بيانات الموقع
+        const products = [
+            {
+                id: 1,
+                name: { ar: "باقة القنوات الرياضية", en: "Sports Channels Package" },
+                category: { ar: "اشتراكات IPTV", en: "IPTV Subscriptions" },
+                price: 15.99,
+                image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: { ar: "باقة خاصة بالقنوات الرياضية العالمية والمحلية مع دقة 4K", en: "Special package for global and local sports channels with 4K resolution" }
+            },
+            {
+                id: 2,
+                name: { ar: "جهاز IPTV متطور", en: "Advanced IPTV Device" },
+                category: { ar: "أجهزة", en: "Devices" },
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: { ar: "جهاز متكامل لتشغيل خدمة IPTV مع معالج سريع وذاكرة عالية", en: "Integrated device for IPTV service with fast processor and high memory" }
+            },
+            {
+                id: 3,
+                name: { ar: "جهاز ألعاب متطور", en: "Advanced Gaming Console" },
+                category: { ar: "ألعاب إلكترونية", en: "Electronic Games" },
+                price: 499.99,
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: { ar: "أحدث جهاز ألعاب مع تقنية 4K وتجربة لعب واقعية", en: "Latest gaming console with 4K technology and realistic gaming experience" }
+            },
+            {
+                id: 4,
+                name: { ar: "سماعات رأس فائقة الجودة", en: "Premium Quality Headphones" },
+                category: { ar: "إلكترونيات", en: "Electronics" },
+                price: 129.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: { ar: "سماعات لاسلكية مع تقنية إلغاء الضوضاء وجودة صوت عالية", en: "Wireless headphones with noise cancellation technology and high sound quality" }
+            }
+        ];
+
+        const plans = [
+            {
+                id: 5,
+                name: { ar: "الباقة الأساسية", en: "Basic Package" },
+                price: 9.99,
+                popular: false,
+                features: [
+                    { ar: "1000+ قناة تلفزيونية", en: "1000+ TV channels" },
+                    { ar: "دقة تصل إلى Full HD", en: "Resolution up to Full HD" },
+                    { ar: "دليل برامج إلكتروني", en: "Electronic program guide" },
+                    { ar: "خدمة عملاء", en: "Customer service" },
+                    { ar: "قنوات 4K", en: "4K channels" },
+                    { ar: "قنوات رياضية متخصصة", en: "Specialized sports channels" }
+                ]
+            },
+            {
+                id: 6,
+                name: { ar: "الباقة المميزة", en: "Premium Package" },
+                price: 15.99,
+                popular: true,
+                features: [
+                    { ar: "3000+ قناة تلفزيونية", en: "3000+ TV channels" },
+                    { ar: "دقة تصل إلى 4K UHD", en: "Resolution up to 4K UHD" },
+                    { ar: "دليل برامج إلكتروني", en: "Electronic program guide" },
+                    { ar: "دعم فني 24/7", en: "24/7 technical support" },
+                    { ar: "جميع القنوات الرياضية", en: "All sports channels" },
+                    { ar: "أكثر من 10000 فيلم ومسلسل", en: "More than 10,000 movies and series" }
+                ]
+            },
+            {
+                id: 7,
+                name: { ar: "الباقة العائلية", en: "Family Package" },
+                price: 24.99,
+                popular: false,
+                features: [
+                    { ar: "5000+ قناة تلفزيونية", en: "5000+ TV channels" },
+                    { ar: "دقة تصل إلى 4K UHD", en: "Resolution up to 4K UHD" },
+                    { ar: "5 أجهزة متزامنة", en: "5 simultaneous devices" },
+                    { ar: "دعم فني 24/7", en: "24/7 technical support" },
+                    { ar: "جميع القنوات الرياضية", en: "All sports channels" },
+                    { ar: "مكتبة أفلام ومسلسلات ضخمة", en: "Huge library of movies and series" }
+                ]
+            }
+        ];
+
+        // بيانات الصور المتحركة (10 صور)
+        const movingIcons = [
+            { img: "https://cdn-icons-png.flaticon.com/512/3032/3032086.png", name: { ar: "قنوات 4K", en: "4K Channels" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/857/857418.png", name: { ar: "رياضة", en: "Sports" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/1179/1179120.png", name: { ar: "أفلام", en: "Movies" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/727/727245.png", name: { ar: "موسيقى", en: "Music" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/808/808439.png", name: { ar: "ألعاب", en: "Games" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/3050/3050525.png", name: { ar: "بث مباشر", en: "Live Streaming" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/2972/2972215.png", name: { ar: "إنترنت سريع", en: "Fast Internet" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/3208/3208720.png", name: { ar: "متعدد الأجهزة", en: "Multi-Device" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/1055/1055646.png", name: { ar: "دعم فني", en: "Technical Support" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/2721/2721264.png", name: { ar: "عروض خاصة", en: "Special Offers" } }
+        ];
+
+        // بيانات صور المربع الداخلي
+        const imageIcons = [
+            { img: "https://cdn-icons-png.flaticon.com/512/3135/3135755.png", name: { ar: "دقة عالية", en: "High Quality" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/2088/2088617.png", name: { ar: "24/7", en: "24/7" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/814/814513.png", name: { ar: "عالمية", en: "Global" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/2582/2582634.png", name: { ar: "مميز", en: "Premium" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/2721/2721614.png", name: { ar: "سرعة", en: "Speed" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/3067/3067256.png", name: { ar: "جودة", en: "Quality" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/786/786246.png", name: { ar: "موثوق", en: "Reliable" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/1828/1828640.png", name: { ar: "آمن", en: "Secure" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/3069/3069224.png", name: { ar: "متقدم", en: "Advanced" } },
+            { img: "https://cdn-icons-png.flaticon.com/512/3094/3094836.png", name: { ar: "أفضل خدمة", en: "Best Service" } }
+        ];
+
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.querySelector('nav ul');
+        const registerBtn = document.getElementById('registerBtn'); // تغيير من loginBtn إلى registerBtn
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeRegister = document.getElementById('closeRegister');
+        const goToRegister = document.getElementById('goToRegister');
+        const goToLogin = document.getElementById('goToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const cartItems = document.getElementById('cartItems');
+        const cartEmpty = document.getElementById('cartEmpty');
+        const cartSummary = document.getElementById('cartSummary');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const notification = document.getElementById('notification');
+        const notificationText = document.getElementById('notificationText');
+        const userInfo = document.getElementById('userInfo');
+        const loginLink = document.getElementById('loginLink');
+        const userName = document.getElementById('userName');
+        const movingIcons1 = document.getElementById('movingIcons1');
+        const movingIcons2 = document.getElementById('movingIcons2');
+        const imageIconsMoving = document.getElementById('imageIconsMoving');
+        const bgAnimation = document.getElementById('bgAnimation');
+        const languageBtn = document.getElementById('languageBtn');
+        const languageDropdown = document.getElementById('languageDropdown');
+        const currentLanguage = document.getElementById('currentLanguage');
+        const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+
+        // حالة التطبيق
+        let currentUser = JSON.parse(localStorage.getItem('sol4k_user')) || null;
+        let cart = JSON.parse(localStorage.getItem('sol4k_cart')) || [];
+        let currentLang = localStorage.getItem('sol4k_language') || 'ar';
+        let isDarkMode = localStorage.getItem('sol4k_dark_mode') === 'true' || false;
+
+        // تهيئة التطبيق
+        function initApp() {
+            createBackgroundParticles();
+            updateCartUI();
+            updateUserUI();
+            renderProducts();
+            renderPlans();
+            renderMovingIcons();
+            renderImageIcons();
+            
+            // تطبيق اللغة المحفوظة
+            applyLanguage(currentLang);
+            
+            // تطبيق وضع الدارك مود المحفوظ
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = currentLang === 'ar' ? 'الوضع الفاتح' : 'Light Mode';
+            }
+            
+            // إذا كان المستخدم مسجل الدخول، تحديث واجهة المستخدم
+            if (currentUser) {
+                showNotification(currentLang === 'ar' ? `مرحباً ${currentUser.name}` : `Welcome ${currentUser.name}`, 'success');
+            }
+        }
+
+        // إنشاء جسيمات الخلفية المتحركة
+        function createBackgroundParticles() {
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'bg-particle';
+                
+                // أحجام عشوائية
+                const size = Math.random() * 120 + 30;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // مواقع عشوائية
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // تأخيرات عشوائية
+                particle.style.animationDelay = `${Math.random() * 30}s`;
+                
+                // شفافية عشوائية
+                particle.style.opacity = `${Math.random() * 0.5 + 0.3}`;
+                
+                bgAnimation.appendChild(particle);
+            }
+        }
+
+        // عرض الصور المتحركة
+        function renderMovingIcons() {
+            // عرض الصور المتحركة الأولى (من اليمين لليسار)
+            movingIcons1.innerHTML = '';
+            movingIcons2.innerHTML = '';
+            
+            // تكرار الصور لضمان استمرارية الحركة (تم زيادة عدد التكرارات)
+            for (let i = 0; i < 4; i++) {
+                movingIcons.forEach(icon => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'icon-item';
+                    iconItem.innerHTML = `
+                        <img src="${icon.img}" alt="${icon.name[currentLang]}">
+                        <span>${icon.name[currentLang]}</span>
+                    `;
+                    movingIcons1.appendChild(iconItem.cloneNode(true));
+                    movingIcons2.appendChild(iconItem.cloneNode(true));
+                });
+            }
+        }
+
+        // عرض صور المربع الداخلي
+        function renderImageIcons() {
+            imageIconsMoving.innerHTML = '';
+            
+            // تكرار الصور لضمان استمرارية الحركة (تم زيادة عدد التكرارات)
+            for (let i = 0; i < 6; i++) {
+                imageIcons.forEach(icon => {
+                    const iconItem = document.createElement('div');
+                    iconItem.className = 'image-icon-item';
+                    iconItem.innerHTML = `
+                        <img src="${icon.img}" alt="${icon.name[currentLang]}">
+                        <span>${icon.name[currentLang]}</span>
+                    `;
+                    imageIconsMoving.appendChild(iconItem);
+                });
+            }
+        }
+
+        // تحديث واجهة سلة التسوق
+        function updateCartUI() {
+            cartCount.textContent = cart.length;
+            
+            // تحديث localStorage
+            localStorage.setItem('sol4k_cart', JSON.stringify(cart));
+            
+            // إذا كانت السلة فارغة، إظهار رسالة السلة الفارغة
+            if (cart.length === 0) {
+                cartEmpty.style.display = 'block';
+                cartSummary.style.display = 'none';
+                cartItems.innerHTML = '';
+            } else {
+                cartEmpty.style.display = 'none';
+                cartSummary.style.display = 'block';
+                
+                // حساب الإجمالي
+                let total = 0;
+                cartItems.innerHTML = '';
+                
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartTotalPrice.textContent = `$${total.toFixed(2)}`;
+            }
+        }
+
+        // تحديث واجهة المستخدم
+        function updateUserUI() {
+            if (currentUser) {
+                userInfo.style.display = 'flex';
+                loginLink.style.display = 'none';
+                userName.textContent = currentUser.name;
+            } else {
+                userInfo.style.display = 'none';
+                loginLink.style.display = 'block';
+            }
+        }
+
+        // عرض المنتجات
+        function renderProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name[currentLang]}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category[currentLang]}</div>
+                        <h3 class="product-title">${product.name[currentLang]}</h3>
+                        <p class="product-description">${product.description[currentLang]}</p>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" onclick="addToCart(${product.id}, '${product.name[currentLang]}', ${product.price}, '${product.image}')">
+                                ${currentLang === 'ar' ? 'أضف للسلة' : 'Add to Cart'}
+                            </button>
+                            <button class="btn btn-secondary">${currentLang === 'ar' ? 'التفاصيل' : 'Details'}</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // عرض الباقات
+        function renderPlans() {
+            const plansContainer = document.getElementById('plansContainer');
+            plansContainer.innerHTML = '';
+            
+            plans.forEach(plan => {
+                const planCard = document.createElement('div');
+                planCard.className = `plan-card ${plan.popular ? 'popular' : ''}`;
+                
+                // إضافة خاصية data-popular-text للنص الديناميكي
+                if (plan.popular) {
+                    planCard.setAttribute('data-popular-text', currentLang === 'ar' ? 'الأكثر شعبية' : 'Most Popular');
+                }
+                
+                const featuresList = plan.features.map(feature => {
+                    return `
+                        <li>
+                            <i class="fas fa-check"></i>
+                            ${feature[currentLang]}
+                        </li>
+                    `;
+                }).join('');
+                
+                planCard.innerHTML = `
+                    <h3 class="plan-title">${plan.name[currentLang]}</h3>
+                    <div class="plan-price">$${plan.price.toFixed(2)} <span>${currentLang === 'ar' ? '/شهرياً' : '/monthly'}</span></div>
+                    <ul class="plan-features">
+                        ${featuresList}
+                    </ul>
+                    <button class="btn ${plan.popular ? 'btn-secondary' : 'btn-primary'}" onclick="addToCart(${plan.id}, '${plan.name[currentLang]}', ${plan.price}, 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                        ${currentLang === 'ar' ? 'اشترك الآن' : 'Subscribe Now'}
+                    </button>
+                `;
+                
+                plansContainer.appendChild(planCard);
+            });
+        }
+
+        // إضافة منتج للسلة
+        function addToCart(id, name, price, image) {
+            // التحقق إذا كان المستخدم مسجل الدخول
+            if (!currentUser) {
+                showNotification(currentLang === 'ar' ? 'يجب تسجيل الدخول أولاً لإضافة منتجات للسلة' : 'You must log in first to add products to cart', 'error');
+                registerModal.style.display = 'flex'; // تغيير من loginModal إلى registerModal
+                return;
+            }
+            
+            // البحث عن المنتج في السلة
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            showNotification(`${currentLang === 'ar' ? 'تم إضافة' : 'Added'} "${name}" ${currentLang === 'ar' ? 'إلى سلة التسوق' : 'to cart'}`, 'success');
+        }
+
+        // إزالة منتج من السلة
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+            showNotification(currentLang === 'ar' ? 'تم إزالة المنتج من السلة' : 'Product removed from cart', 'success');
+        }
+
+        // تسجيل الدخول
+        function loginUser(email, password) {
+            // في التطبيق الحقيقي، هنا ستتم المصادقة مع الخادم
+            // للمثال، سنقوم بمحاكاة تسجيل الدخول
+            
+            // التحقق من صحة البيانات
+            if (!email || !password) {
+                showNotification(currentLang === 'ar' ? 'الرجاء إدخال البريد الإلكتروني وكلمة المرور' : 'Please enter email and password', 'error');
+                return false;
+            }
+            
+            // محاكاة تسجيل الدخول الناجح
+            currentUser = {
+                id: 1,
+                name: currentLang === 'ar' ? 'محمد أحمد' : 'Mohamed Ahmed',
+                email: email
+            };
+            
+            // حفظ في localStorage
+            localStorage.setItem('sol4k_user', JSON.stringify(currentUser));
+            
+            // تحديث واجهة المستخدم
+            updateUserUI();
+            
+            // إغلاق نافذة تسجيل الدخول
+            loginModal.style.display = 'none';
+            
+            // إظهار إشعار
+            showNotification(currentLang === 'ar' ? `تم تسجيل الدخول بنجاح! مرحباً ${currentUser.name}` : `Logged in successfully! Welcome ${currentUser.name}`, 'success');
+            
+            return true;
+        }
+
+        // تسجيل حساب جديد
+        function registerUser(name, email, password, confirmPassword) {
+            // التحقق من صحة البيانات
+            if (!name || !email || !password || !confirmPassword) {
+                showNotification(currentLang === 'ar' ? 'الرجاء ملء جميع الحقول' : 'Please fill all fields', 'error');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification(currentLang === 'ar' ? 'كلمات المرور غير متطابقة' : 'Passwords do not match', 'error');
+                return false;
+            }
+            
+            if (password.length < 6) {
+                showNotification(currentLang === 'ar' ? 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' : 'Password must be at least 6 characters', 'error');
+                return false;
+            }
+            
+            // محاكاة تسجيل ناجح
+            currentUser = {
+                id: Date.now(),
+                name: name,
+                email: email
+            };
+            
+            // حفظ في localStorage
+            localStorage.setItem('sol4k_user', JSON.stringify(currentUser));
+            
+            // تحديث واجهة المستخدم
+            updateUserUI();
+            
+            // إغلاق نافذة التسجيل
+            registerModal.style.display = 'none';
+            
+            // إظهار إشعار
+            showNotification(currentLang === 'ar' ? `تم إنشاء الحساب بنجاح! مرحباً ${currentUser.name}` : `Account created successfully! Welcome ${currentUser.name}`, 'success');
+            
+            return true;
+        }
+
+        // تسجيل الخروج
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('sol4k_user');
+            updateUserUI();
+            showNotification(currentLang === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Logged out successfully', 'success');
+        }
+
+        // إتمام الشراء عبر واتساب
+        function checkout() {
+            if (cart.length === 0) {
+                showNotification(currentLang === 'ar' ? 'سلة التسوق فارغة' : 'Cart is empty', 'error');
+                return;
+            }
+            
+            // إنشاء رسالة الطلب
+            let message = currentLang === 'ar' ? `مرحباً، أريد شراء المنتجات التالية من متجر Sol 4k:\n\n` : `Hello, I want to buy the following products from Sol 4k store:\n\n`;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)} × ${item.quantity}\n`;
+            });
+            
+            // حساب الإجمالي
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\n${currentLang === 'ar' ? 'المجموع:' : 'Total:'} $${total.toFixed(2)}`;
+            
+            // إضافة معلومات المستخدم
+            if (currentUser) {
+                message += `\n\n${currentLang === 'ar' ? 'معلومات العميل:' : 'Customer Information:'}\n${currentLang === 'ar' ? 'الاسم:' : 'Name:'} ${currentUser.name}\n${currentLang === 'ar' ? 'البريد:' : 'Email:'} ${currentUser.email}`;
+            }
+            
+            message += `\n\n${currentLang === 'ar' ? 'شكراً لكم، Sol 4k' : 'Thank you, Sol 4k'}`;
+            
+            // ترميز الرسالة للرابط
+            const encodedMessage = encodeURIComponent(message);
+            
+            // إنشاء رابط واتساب
+            const phoneNumber = "+9647714897390";
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // فتح الرابط في نافذة جديدة
+            window.open(whatsappUrl, '_blank');
+            
+            // إفراغ السلة بعد إتمام الطلب
+            cart = [];
+            updateCartUI();
+            
+            // إغلاق نافذة السلة
+            cartModal.style.display = 'none';
+            
+            showNotification(currentLang === 'ar' ? 'تم إنشاء طلبك، سيتم التواصل معك عبر واتساب' : 'Your order has been created, we will contact you via WhatsApp', 'success');
+        }
+
+        // تطبيق اللغة
+        function applyLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('sol4k_language', lang);
+            
+            // تحديث زر اللغة
+            currentLanguage.textContent = lang === 'ar' ? 'العربية' : 'English';
+            
+            // تحديث النصوص في الصفحة
+            document.querySelectorAll('[data-ar], [data-en]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+            
+            // تحديث اتجاه الصفحة
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            // إعادة عرض المحتوى الديناميكي
+            renderProducts();
+            renderPlans();
+            renderMovingIcons();
+            renderImageIcons();
+            
+            // تحديث زر الوضع الداكن
+            if (document.body.classList.contains('dark-mode')) {
+                themeText.textContent = lang === 'ar' ? 'الوضع الفاتح' : 'Light Mode';
+            }
+        }
+
+        // تبديل وضع الدارك مود
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+            
+            if (isDarkMode) {
+                themeIcon.className = 'fas fa-sun';
+                themeText.textContent = currentLang === 'ar' ? 'الوضع الفاتح' : 'Light Mode';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeText.textContent = currentLang === 'ar' ? 'الوضع الداكن' : 'Dark Mode';
+            }
+            
+            localStorage.setItem('sol4k_dark_mode', isDarkMode);
+        }
+
+        // إظهار الإشعار
+        function showNotification(text, type = 'success') {
+            notificationText.textContent = text;
+            notification.className = `notification ${type}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+        });
+        
+        // Close cart modal
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+        
+        // Close cart modal when clicking outside
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+        
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '100%';
+                nav.style.right = '0';
+                nav.style.backgroundColor = 'rgba(var(--background-color), 0.98)';
+                nav.style.width = '100%';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+                nav.style.backdropFilter = 'blur(10px)';
+                nav.style.borderTop = '1px solid rgba(10, 36, 99, 0.1)';
+                nav.style.borderRadius = '0 0 20px 20px';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    nav.style.display = 'none';
+                }
+            });
+        });
+        
+        // إنشاء حساب - فتح نافذة التسجيل مباشرة
+        registerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'flex';
+        });
+        
+        // تسجيل الخروج
+        logoutBtn.addEventListener('click', logoutUser);
+        
+        // إغلاق نافذة تسجيل الدخول
+        closeLogin.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+        
+        // إغلاق نافذة التسجيل
+        closeRegister.addEventListener('click', () => {
+            registerModal.style.display = 'none';
+        });
+        
+        // الانتقال إلى نافذة التسجيل من نافذة تسجيل الدخول
+        goToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+        
+        // الانتقال إلى نافذة تسجيل الدخول من نافذة التسجيل
+        goToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+        
+        // إغلاق النوافذ عند النقر خارجها
+        [loginModal, registerModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+        
+        // معالجة تسجيل الدخول
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            loginUser(email, password);
+        });
+        
+        // معالجة التسجيل
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            registerUser(name, email, password, confirmPassword);
+        });
+        
+        // إتمام الشراء
+        checkoutBtn.addEventListener('click', checkout);
+        
+        // تبديل اللغة
+        languageBtn.addEventListener('click', () => {
+            languageDropdown.classList.toggle('show');
+        });
+        
+        // اختيار اللغة
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const lang = option.getAttribute('data-lang');
+                applyLanguage(lang);
+                
+                // تحديث حالة الخيارات النشطة
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+                
+                // إغلاق القائمة المنسدلة
+                languageDropdown.classList.remove('show');
+            });
+        });
+        
+        // إغلاق قائمة اللغة عند النقر خارجها
+        document.addEventListener('click', (e) => {
+            if (!languageBtn.contains(e.target) && !languageDropdown.contains(e.target)) {
+                languageDropdown.classList.remove('show');
+            }
+        });
+        
+        // تبديل وضع الدارك مود
+        themeBtn.addEventListener('click', toggleDarkMode);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // جعل الأيقونات قابلة للتكرار السلس
+        window.addEventListener('load', () => {
+            const createCloneIcons = () => {
+                // استنساخ الأيقونات للحركة السلسة
+                const movingIcons1Content = movingIcons1.innerHTML;
+                const movingIcons2Content = movingIcons2.innerHTML;
+                movingIcons1.innerHTML = movingIcons1Content + movingIcons1Content + movingIcons1Content;
+                movingIcons2.innerHTML = movingIcons2Content + movingIcons2Content + movingIcons2Content;
+                
+                // استنساخ الأيقونات الداخلية للحركة السلسة
+                const imageIconsContent = imageIconsMoving.innerHTML;
+                imageIconsMoving.innerHTML = imageIconsContent + imageIconsContent + imageIconsContent + imageIconsContent;
+            };
+            
+            createCloneIcons();
+        });
+    </script>
+</body>
+</html>
