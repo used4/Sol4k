@@ -569,7 +569,7 @@
             opacity: 0.8;
         }
 
-        /* إيقونات متحركة */
+        /* إيقونات متحركة - تم زيادة السرعة */
         .moving-icons-section {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--light-color), var(--card-background));
@@ -585,14 +585,14 @@
 
         .moving-icons {
             display: flex;
-            animation: moveIcons 40s linear infinite;
+            animation: moveIcons 25s linear infinite; /* تم تقليل المدة من 40s إلى 25s لزيادة السرعة */
             gap: 60px;
             padding: 20px 0;
         }
 
         .moving-icons-rtl {
             animation-direction: reverse;
-            animation-duration: 35s;
+            animation-duration: 20s; /* تم تقليل المدة من 35s إلى 20s لزيادة السرعة */
         }
 
         .icon-item {
@@ -662,7 +662,7 @@
             }
         }
 
-        /* مربع مع صورة وإيقونات متحركة */
+        /* مربع مع صورة وإيقونات متحركة - تم زيادة السرعة */
         .image-icons-box {
             padding: 100px 0;
             background: var(--card-background);
@@ -741,7 +741,7 @@
 
         .image-icons-moving {
             display: flex;
-            animation: moveIconsFast 25s linear infinite;
+            animation: moveIconsFast 15s linear infinite; /* تم تقليل المدة من 25s إلى 15s لزيادة السرعة */
             gap: 40px;
         }
 
@@ -2134,7 +2134,6 @@
                     <button class="btn btn-success whatsapp-button" id="checkoutBtn">
                         <i class="fab fa-whatsapp"></i> <span data-ar="إتمام الشراء عبر واتساب" data-en="Complete Purchase via WhatsApp">إتمام الشراء عبر واتساب</span>
                     </button>
-                    <button class="btn btn-secondary" style="flex: 1;" data-ar="مواصلة التسوق" data-en="Continue Shopping">مواصلة التسوق</button>
                 </div>
             </div>
             
@@ -2144,7 +2143,6 @@
                 </div>
                 <h3 data-ar="سلة التسوق فارغة" data-en="Your cart is empty">سلة التسوق فارغة</h3>
                 <p data-ar="لم تقم بإضافة أي منتجات إلى سلة التسوق بعد." data-en="You haven't added any products to your cart yet.">لم تقم بإضافة أي منتجات إلى سلة التسوق بعد.</p>
-                <button class="btn btn-primary" id="continueShopping" data-ar="استعرض المنتجات" data-en="Browse Products">استعرض المنتجات</button>
             </div>
         </div>
     </div>
@@ -2469,7 +2467,6 @@
         const cartCount = document.getElementById('cartCount');
         const cartTotalPrice = document.getElementById('cartTotalPrice');
         const checkoutBtn = document.getElementById('checkoutBtn');
-        const continueShopping = document.getElementById('continueShopping');
         const notification = document.getElementById('notification');
         const notificationText = document.getElementById('notificationText');
         const userInfo = document.getElementById('userInfo');
@@ -3000,14 +2997,16 @@
             registerModal.style.display = 'none';
         });
         
-        // الانتقال إلى نافذة التسجيل
-        goToRegister.addEventListener('click', () => {
+        // الانتقال إلى نافذة التسجيل - تم إصلاح الزر
+        goToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
             loginModal.style.display = 'none';
             registerModal.style.display = 'flex';
         });
         
-        // الانتقال إلى نافذة تسجيل الدخول
-        goToLogin.addEventListener('click', () => {
+        // الانتقال إلى نافذة تسجيل الدخول - تم إصلاح الزر
+        goToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
             registerModal.style.display = 'none';
             loginModal.style.display = 'flex';
         });
@@ -3043,12 +3042,6 @@
         
         // إتمام الشراء
         checkoutBtn.addEventListener('click', checkout);
-        
-        // مواصلة التسوق
-        continueShopping.addEventListener('click', () => {
-            cartModal.style.display = 'none';
-            window.location.href = '#products';
-        });
         
         // تبديل اللغة
         languageBtn.addEventListener('click', () => {
