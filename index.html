@@ -965,7 +965,7 @@
         }
 
         .plan-card.popular::before {
-            content: 'الأكثر شعبية';
+            content: attr(data-popular-text);
             position: absolute;
             top: -12px;
             right: 50%;
@@ -1312,7 +1312,28 @@
                 transform: scale(1);
             }
 
+            /* إظهار الأيقونات العائمة على الهواتف */
             .floating-social {
+                display: flex !important;
+            }
+
+            .floating-social.right {
+                right: 15px;
+                bottom: 80px;
+            }
+
+            .floating-social.left {
+                left: 15px;
+                bottom: 80px;
+            }
+
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            .floating-label {
                 display: none;
             }
         }
@@ -1356,6 +1377,45 @@
             .payment-icon {
                 min-width: 100px;
                 padding: 15px;
+            }
+
+            /* تحسين الأيقونات العائمة للهواتف الصغيرة */
+            .floating-social.right {
+                right: 10px;
+                bottom: 70px;
+            }
+
+            .floating-social.left {
+                left: 10px;
+                bottom: 70px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .floating-social {
+                gap: 10px;
+            }
+
+            .floating-social.right {
+                right: 8px;
+                bottom: 60px;
+            }
+
+            .floating-social.left {
+                left: 8px;
+                bottom: 60px;
+            }
+
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
             }
         }
 
@@ -2618,6 +2678,11 @@
             plans.forEach(plan => {
                 const planCard = document.createElement('div');
                 planCard.className = `plan-card ${plan.popular ? 'popular' : ''}`;
+                
+                // إضافة خاصية data-popular-text للنص الديناميكي
+                if (plan.popular) {
+                    planCard.setAttribute('data-popular-text', currentLang === 'ar' ? 'الأكثر شعبية' : 'Most Popular');
+                }
                 
                 const featuresList = plan.features.map(feature => {
                     return `
