@@ -1826,7 +1826,8 @@
                 </div>
                 
                 <div class="user-account" id="loginLink">
-                    <a href="#" id="loginBtn"><i class="fas fa-user"></i> <span data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</span></a>
+                    <!-- تم تغيير النص من "تسجيل الدخول" إلى "إنشاء حساب" -->
+                    <a href="#" id="registerBtn"><i class="fas fa-user-plus"></i> <span data-ar="إنشاء حساب" data-en="Create Account">إنشاء حساب</span></a>
                 </div>
                 
                 <div class="cart-icon" id="cartIcon">
@@ -2047,36 +2048,7 @@
         </div>
     </footer>
 
-    <!-- تسجيل الدخول Modal -->
-    <div class="auth-modal" id="loginModal">
-        <div class="auth-content">
-            <button class="close-auth" id="closeLogin">&times;</button>
-            <div class="auth-header">
-                <h2 class="auth-title" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h2>
-                <p class="auth-subtitle" data-ar="ادخل بياناتك للدخول إلى حسابك" data-en="Enter your credentials to access your account">ادخل بياناتك للدخول إلى حسابك</p>
-            </div>
-            
-            <form class="auth-form" id="loginForm">
-                <div class="form-group">
-                    <label class="form-label" for="loginEmail" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
-                    <input type="email" class="form-control" id="loginEmail" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="loginPassword" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
-                    <input type="password" class="form-control" id="loginPassword" required>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 16px;" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
-            </form>
-            
-            <div class="auth-footer">
-                <p data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟ <span class="auth-link" id="goToRegister" data-ar="سجل الآن" data-en="Register Now">سجل الآن</span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- تسجيل جديد Modal -->
+    <!-- تسجيل جديد Modal - الآن هي الافتراضية -->
     <div class="auth-modal" id="registerModal">
         <div class="auth-content">
             <button class="close-auth" id="closeRegister">&times;</button>
@@ -2111,6 +2083,35 @@
             
             <div class="auth-footer">
                 <p data-ar="لديك حساب بالفعل؟" data-en="Already have an account?">لديك حساب بالفعل؟ <span class="auth-link" id="goToLogin" data-ar="سجل الدخول" data-en="Login">سجل الدخول</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- تسجيل الدخول Modal - الآن هي الثانوية -->
+    <div class="auth-modal" id="loginModal">
+        <div class="auth-content">
+            <button class="close-auth" id="closeLogin">&times;</button>
+            <div class="auth-header">
+                <h2 class="auth-title" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h2>
+                <p class="auth-subtitle" data-ar="ادخل بياناتك للدخول إلى حسابك" data-en="Enter your credentials to access your account">ادخل بياناتك للدخول إلى حسابك</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; font-size: 16px;" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟ <span class="auth-link" id="goToRegister" data-ar="سجل الآن" data-en="Register Now">سجل الآن</span></p>
             </div>
         </div>
     </div>
@@ -2158,6 +2159,7 @@
                 "features": "المميزات",
                 "about": "من نحن",
                 "contact": "اتصل بنا",
+                "createAccount": "إنشاء حساب",
                 "login": "تسجيل الدخول",
                 "logout": "تسجيل خروج",
                 "darkMode": "الوضع الداكن",
@@ -2250,6 +2252,7 @@
                 "features": "Features",
                 "about": "About Us",
                 "contact": "Contact Us",
+                "createAccount": "Create Account",
                 "login": "Login",
                 "logout": "Logout",
                 "darkMode": "Dark Mode",
@@ -2451,7 +2454,7 @@
         const closeCart = document.getElementById('closeCart');
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const nav = document.querySelector('nav ul');
-        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn'); // تغيير من loginBtn إلى registerBtn
         const logoutBtn = document.getElementById('logoutBtn');
         const loginModal = document.getElementById('loginModal');
         const registerModal = document.getElementById('registerModal');
@@ -2710,7 +2713,7 @@
             // التحقق إذا كان المستخدم مسجل الدخول
             if (!currentUser) {
                 showNotification(currentLang === 'ar' ? 'يجب تسجيل الدخول أولاً لإضافة منتجات للسلة' : 'You must log in first to add products to cart', 'error');
-                loginModal.style.display = 'flex';
+                registerModal.style.display = 'flex'; // تغيير من loginModal إلى registerModal
                 return;
             }
             
@@ -2978,10 +2981,10 @@
             });
         });
         
-        // تسجيل الدخول
-        loginBtn.addEventListener('click', (e) => {
+        // إنشاء حساب - فتح نافذة التسجيل مباشرة
+        registerBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            loginModal.style.display = 'flex';
+            registerModal.style.display = 'flex';
         });
         
         // تسجيل الخروج
@@ -2997,14 +3000,14 @@
             registerModal.style.display = 'none';
         });
         
-        // الانتقال إلى نافذة التسجيل - تم إصلاح الزر
+        // الانتقال إلى نافذة التسجيل من نافذة تسجيل الدخول
         goToRegister.addEventListener('click', (e) => {
             e.preventDefault();
             loginModal.style.display = 'none';
             registerModal.style.display = 'flex';
         });
         
-        // الانتقال إلى نافذة تسجيل الدخول - تم إصلاح الزر
+        // الانتقال إلى نافذة تسجيل الدخول من نافذة التسجيل
         goToLogin.addEventListener('click', (e) => {
             e.preventDefault();
             registerModal.style.display = 'none';
